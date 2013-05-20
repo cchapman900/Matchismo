@@ -15,8 +15,8 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uBx-SS-DJH">
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="73" id="Fch-hb-5Rl"/>
-                                    <constraint firstAttribute="height" constant="94" id="PaB-jb-HQk"/>
+                                    <constraint firstAttribute="width" constant="70" id="08B-sP-dug"/>
+                                    <constraint firstAttribute="height" constant="98" id="3Tr-nm-uzG"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" backgroundImage="PlayingCardBackSmall.png">
@@ -34,7 +34,7 @@
                         </subviews>
                         <color key="backgroundColor" red="0.10278018893218267" green="0.13696384889826196" blue="0.21204144021739135" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="uBx-SS-DJH" firstAttribute="centerX" secondItem="5" secondAttribute="centerX" type="default" id="Udc-H8-Bi7"/>
+                            <constraint firstItem="uBx-SS-DJH" firstAttribute="leading" secondItem="5" secondAttribute="leading" constant="348" id="hZq-Ga-fdQ"/>
                             <constraint firstItem="uBx-SS-DJH" firstAttribute="top" secondItem="5" secondAttribute="top" constant="430" id="nKp-kj-ikm"/>
                         </constraints>
                     </view>
@@ -50,6 +50,9 @@
     <classes>
         <class className="CardGameViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CardGameViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="flipCard:" candidateClass="UIButton"/>
+            </relationships>
         </class>
         <class className="NSLayoutConstraint" superclassName="NSObject">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>

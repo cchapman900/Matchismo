@@ -25,7 +25,7 @@
 		CE8009981749DB4100075220 /* PlayingCard.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8009971749DB4100075220 /* PlayingCard.m */; };
 		CE80099B1749EA0500075220 /* PlayingCardDeck.m in Sources */ = {isa = PBXBuildFile; fileRef = CE80099A1749EA0500075220 /* PlayingCardDeck.m */; };
 		CE80099F174A112E00075220 /* CardFront.png in Resources */ = {isa = PBXBuildFile; fileRef = CE80099E174A112E00075220 /* CardFront.png */; };
-		CE8009A1174A11CE00075220 /* PlayingCardBackSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = CE8009A0174A11CE00075220 /* PlayingCardBackSmall.png */; };
+		CE8009A3174A12E800075220 /* PlayingCardBackSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = CE8009A2174A12E800075220 /* PlayingCardBackSmall.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,7 +56,7 @@
 		CE8009991749EA0500075220 /* PlayingCardDeck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlayingCardDeck.h; path = Model/PlayingCardDeck.h; sourceTree = "<group>"; };
 		CE80099A1749EA0500075220 /* PlayingCardDeck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlayingCardDeck.m; path = Model/PlayingCardDeck.m; sourceTree = "<group>"; };
 		CE80099E174A112E00075220 /* CardFront.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CardFront.png; sourceTree = "<group>"; };
-		CE8009A0174A11CE00075220 /* PlayingCardBackSmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PlayingCardBackSmall.png; sourceTree = "<group>"; };
+		CE8009A2174A12E800075220 /* PlayingCardBackSmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PlayingCardBackSmall.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,7 +129,7 @@
 		CE8009861749D67900075220 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				CE8009A0174A11CE00075220 /* PlayingCardBackSmall.png */,
+				CE8009A2174A12E800075220 /* PlayingCardBackSmall.png */,
 				CE80099E174A112E00075220 /* CardFront.png */,
 				CE8009871749D68D00075220 /* Icon-72.png */,
 				CE8009881749D68D00075220 /* Icon-72@2x.png */,
@@ -215,7 +215,7 @@
 				CE8009891749D68D00075220 /* Icon-72.png in Resources */,
 				CE80098A1749D68D00075220 /* Icon-72@2x.png in Resources */,
 				CE80099F174A112E00075220 /* CardFront.png in Resources */,
-				CE8009A1174A11CE00075220 /* PlayingCardBackSmall.png in Resources */,
+				CE8009A3174A12E800075220 /* PlayingCardBackSmall.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

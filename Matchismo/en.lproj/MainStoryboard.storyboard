@@ -8,7 +8,7 @@
         <scene sceneID="oNb-aa-HGH">
             <objects>
                 <tabBarController definesPresentationContext="YES" id="aVh-9r-CsR" sceneMemberID="viewController">
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="De0-Fc-m9p">
                         <rect key="frame" x="129" y="330" width="163" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
@@ -745,6 +745,9 @@
                                         </fragment>
                                     </attributedString>
                                 </state>
+                                <connections>
+                                    <action selector="dealButton" destination="2" eventType="touchUpInside" id="gyc-RF-gOP"/>
+                                </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Score: 0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hWW-Ju-DaV">
                                 <constraints>
@@ -763,6 +766,9 @@
                                     <segment title="2-Card"/>
                                     <segment title="3-Card"/>
                                 </segments>
+                                <connections>
+                                    <action selector="difficultyLevelTab:" destination="2" eventType="valueChanged" id="VmX-JY-gKa"/>
+                                </connections>
                             </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" red="0.10278018893218267" green="0.13696384889826196" blue="0.21204144021739135" alpha="1" colorSpace="calibratedRGB"/>
@@ -939,6 +945,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Matchismo" image="playingCardTabIcon.png" id="xUE-hm-Rff"/>
                     <connections>
+                        <outlet property="difficultyLevelTab" destination="tcE-ef-MXt" id="msK-gW-3jx"/>
                         <outlet property="scoreLabel" destination="hWW-Ju-DaV" id="tEj-9S-LXw"/>
                         <outletCollection property="cardButtons" destination="zLP-V7-vjm" id="whR-YP-WEL"/>
                         <outletCollection property="cardButtons" destination="zLP-V7-vjm" id="VH8-H9-h9k"/>
@@ -1001,7 +1008,9 @@
         <class className="CardGameViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CardGameViewController.h"/>
             <relationships>
+                <relationship kind="action" name="difficultyLevelTab:" candidateClass="UISegmentedControl"/>
                 <relationship kind="action" name="flipCard:" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="difficultyLevelTab" candidateClass="UISegmentedControl"/>
                 <relationship kind="outlet" name="scoreLabel" candidateClass="UILabel"/>
                 <relationship kind="outletCollection" name="cardButtons" candidateClass="UIButton"/>
             </relationships>

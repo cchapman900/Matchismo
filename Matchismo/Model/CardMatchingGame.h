@@ -20,4 +20,6 @@
 
 @property(nonatomic, readonly) int score;
 
+@property(nonatomic)int difficultyLevel;
+
 @end

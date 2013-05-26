@@ -12,17 +12,24 @@
 
 @property(nonatomic, readwrite) int score;
 @property(strong, nonatomic) NSMutableArray *cards;
-@property(strong, nonatomic) NSMutableArray *activeCards;
 
 @end
 
 @implementation CardMatchingGame
+
+- (int)difficultyLevel
+{
+    if (!_difficultyLevel) _difficultyLevel = 3;
+    
+    return _difficultyLevel;
+}
 
 - (NSMutableArray *)cards
 {
     if (!_cards) _cards = [[NSMutableArray alloc] init];
     return _cards;
 }
+
 
 -(id)initWithCardCount:(NSUInteger)count usingDeck:(Deck *)deck
 {
@@ -58,20 +65,33 @@
     if (!card.isUnplayable) {
         
         if (!card.isFaceUp){
+            
+            NSMutableArray *activeCards = [[NSMutableArray alloc] init];
             for (Card *otherCard in self.cards) {
                 if (otherCard.isFaceUp && !otherCard.isUnplayable) {
-                    int matchScore = [card match:@[otherCard]];
+                    [activeCards addObject:otherCard];
+                }
+                NSLog(@"Diffuculty level: %d",self.difficultyLevel);
+                if (activeCards.count == self.difficultyLevel - 1) {
+                    
+                    int matchScore = [card match:activeCards];
                     if (matchScore) {
-                        otherCard.unplayable = YES;
+                        for (Card *activeCard in activeCards) {
+                            activeCard.unplayable = YES;
+                        }
                         card.unplayable = YES;
                         self.score += matchScore * MATCH_BONUS;
                     } else {
-                        otherCard.faceUp = NO;
+                        for (Card *activeCard in activeCards) {
+                            activeCard.faceUp = NO;
+                        }
                         self.score -= MISMATCH_PENALTY;
                     }
                     break;
                 }
+                
             }
+            
             self.score -= FLIP_COST;
         }
         

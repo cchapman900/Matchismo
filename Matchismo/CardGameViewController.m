@@ -16,11 +16,16 @@
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 @property (strong, nonatomic)CardMatchingGame *game;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *difficultyLevelTab;
 
 @end
 
 @implementation CardGameViewController
 
+-(void)viewDidLoad
+{
+    self.game.difficultyLevel = self.difficultyLevelTab.selectedSegmentIndex +2;
+}
 -(CardMatchingGame *)game
 {
     if (!_game) _game = [[CardMatchingGame alloc] initWithCardCount:self.cardButtons.count
@@ -31,6 +36,16 @@
 -(void)setCardButtons:(NSArray *)cardButtons
 {
     _cardButtons = cardButtons;
+    [self updateUI];
+}
+
+- (IBAction)difficultyLevelTab:(UISegmentedControl *)sender {
+    self.game.difficultyLevel = sender.selectedSegmentIndex + 2;
+}
+
+- (IBAction)dealButton {
+    self.game = nil;
+    self.difficultyLevelTab.enabled = YES;
     [self updateUI];
 }
 
@@ -50,6 +65,7 @@
 }
 
 - (IBAction)flipCard:(UIButton *)sender {
+    self.difficultyLevelTab.enabled = NO;
     [self.game flipCardAtIndex:[self.cardButtons indexOfObject:sender]];
     sender.selected = !sender.selected;
     [self updateUI];

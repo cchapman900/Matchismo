@@ -770,6 +770,14 @@
                                     <action selector="difficultyLevelTab:" destination="2" eventType="valueChanged" id="VmX-JY-gKa"/>
                                 </connections>
                             </segmentedControl>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Welcome to Matchismo!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5eT-ut-yEL">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="405" id="8rr-s9-dWP"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.10278018893218267" green="0.13696384889826196" blue="0.21204144021739135" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -794,6 +802,7 @@
                             <constraint firstItem="vCC-Sf-QCD" firstAttribute="leading" secondItem="iea-Hy-CI3" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="81o-je-INH"/>
                             <constraint firstAttribute="bottom" secondItem="hWW-Ju-DaV" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="9jG-jC-bbv"/>
                             <constraint firstItem="mTz-11-DlY" firstAttribute="leading" secondItem="adu-Be-fhW" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="9lW-9T-hz2"/>
+                            <constraint firstItem="5eT-ut-yEL" firstAttribute="centerX" secondItem="5" secondAttribute="centerX" type="default" id="AE6-C3-tbm"/>
                             <constraint firstItem="lSg-tI-1Fz" firstAttribute="top" secondItem="NSY-pR-soV" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="AEW-uI-KmM"/>
                             <constraint firstItem="JVK-7W-SO8" firstAttribute="leading" secondItem="Ndg-GY-Lzl" secondAttribute="leading" type="default" id="AGr-Rb-MBH"/>
                             <constraint firstItem="vWo-La-bVE" firstAttribute="leading" secondItem="4YV-Pm-hjI" secondAttribute="leading" type="default" id="ATY-JN-uHz"/>
@@ -846,6 +855,7 @@
                             <constraint firstItem="vCC-Sf-QCD" firstAttribute="leading" secondItem="BLd-Gw-BrY" secondAttribute="leading" type="default" id="Pvx-eh-JF2"/>
                             <constraint firstItem="KR8-2g-Mnp" firstAttribute="top" secondItem="nlo-eP-Pjw" secondAttribute="top" type="default" id="Px3-3w-ra1"/>
                             <constraint firstItem="bmk-ot-0U9" firstAttribute="leading" secondItem="KGa-ze-bW0" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="R6o-LN-GqY"/>
+                            <constraint firstAttribute="bottom" secondItem="5eT-ut-yEL" secondAttribute="bottom" constant="86" id="RH3-Fn-nPh"/>
                             <constraint firstItem="Z99-3Y-SZA" firstAttribute="leading" secondItem="Of3-5q-oDs" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="RN9-We-TRF"/>
                             <constraint firstItem="lSg-tI-1Fz" firstAttribute="leading" secondItem="NSY-pR-soV" secondAttribute="leading" type="default" id="RcJ-X1-KAG"/>
                             <constraint firstItem="ZA0-ix-cma" firstAttribute="leading" secondItem="iea-Hy-CI3" secondAttribute="leading" type="default" id="Tcd-Xe-cUB"/>
@@ -946,6 +956,7 @@
                     <tabBarItem key="tabBarItem" title="Matchismo" image="playingCardTabIcon.png" id="xUE-hm-Rff"/>
                     <connections>
                         <outlet property="difficultyLevelTab" destination="tcE-ef-MXt" id="msK-gW-3jx"/>
+                        <outlet property="notificationLabel" destination="5eT-ut-yEL" id="Irw-hi-y0Q"/>
                         <outlet property="scoreLabel" destination="hWW-Ju-DaV" id="tEj-9S-LXw"/>
                         <outletCollection property="cardButtons" destination="zLP-V7-vjm" id="whR-YP-WEL"/>
                         <outletCollection property="cardButtons" destination="zLP-V7-vjm" id="VH8-H9-h9k"/>
@@ -1011,6 +1022,7 @@
                 <relationship kind="action" name="difficultyLevelTab:" candidateClass="UISegmentedControl"/>
                 <relationship kind="action" name="flipCard:" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="difficultyLevelTab" candidateClass="UISegmentedControl"/>
+                <relationship kind="outlet" name="notificationLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="scoreLabel" candidateClass="UILabel"/>
                 <relationship kind="outletCollection" name="cardButtons" candidateClass="UIButton"/>
             </relationships>

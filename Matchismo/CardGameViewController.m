@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 @property (strong, nonatomic)CardMatchingGame *game;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *difficultyLevelTab;
+@property (weak, nonatomic) IBOutlet UILabel *notificationLabel;
 
 @end
 
@@ -62,6 +63,7 @@
         cardButton.alpha = card.isUnplayable ? 0.3 : 1.0;
     }
     self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d",self.game.score];
+    self.notificationLabel.text = self.game.notification;
 }
 
 - (IBAction)flipCard:(UIButton *)sender {

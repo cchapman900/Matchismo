@@ -24,6 +24,12 @@
     return _difficultyLevel;
 }
 
+-(NSString *)notification {
+    if (!_notification) _notification = [[NSString alloc] init];
+    
+    return _notification;
+}
+
 - (NSMutableArray *)cards
 {
     if (!_cards) _cards = [[NSMutableArray alloc] init];
@@ -54,6 +60,17 @@
     return (index < self.cards.count) ? self.cards[index] : nil;
 }
 
++(NSString *)formatActiveCards:(NSMutableArray*)activeCards
+{
+    NSMutableArray *cardContents = [[NSMutableArray alloc] init];
+    for (Card *card in activeCards) {
+        [cardContents addObject:card.contents];
+    }
+    NSString *formattedCards = [cardContents componentsJoinedByString:@", "];
+    
+    return formattedCards;
+}
+
 #define MATCH_BONUS 4
 #define MISMATCH_PENALTY 2
 #define FLIP_COST 0
@@ -65,23 +82,25 @@
     if (!card.isUnplayable) {
         
         if (!card.isFaceUp){
+            self.notification = [NSString stringWithFormat:@"Flipped up %@", card.contents];
             
             NSMutableArray *activeCards = [[NSMutableArray alloc] init];
             for (Card *otherCard in self.cards) {
                 if (otherCard.isFaceUp && !otherCard.isUnplayable) {
                     [activeCards addObject:otherCard];
                 }
-                NSLog(@"Diffuculty level: %d",self.difficultyLevel);
                 if (activeCards.count == self.difficultyLevel - 1) {
                     
                     int matchScore = [card match:activeCards];
                     if (matchScore) {
+                        self.notification = [NSString stringWithFormat:@"Matched %@ and %@ for %d points!",[CardMatchingGame formatActiveCards:activeCards], card.contents, matchScore * MATCH_BONUS];
                         for (Card *activeCard in activeCards) {
                             activeCard.unplayable = YES;
                         }
                         card.unplayable = YES;
                         self.score += matchScore * MATCH_BONUS;
                     } else {
+                        self.notification = [NSString stringWithFormat:@"%@ and %@ don't match! %d point penalty.", [CardMatchingGame formatActiveCards:activeCards], card.contents, MISMATCH_PENALTY];
                         for (Card *activeCard in activeCards) {
                             activeCard.faceUp = NO;
                         }

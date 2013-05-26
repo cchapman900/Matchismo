@@ -22,4 +22,6 @@
 
 @property(nonatomic)int difficultyLevel;
 
+@property(strong, nonatomic)NSString *notification;
+
 @end

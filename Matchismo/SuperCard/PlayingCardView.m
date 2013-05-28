@@ -171,8 +171,6 @@
     [self setNeedsDisplay];
 }
 
-
-
 -(void)setRank:(NSUInteger)rank
 {
     _rank = rank;

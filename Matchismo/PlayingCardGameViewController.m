@@ -13,7 +13,6 @@
 
 @implementation PlayingCardGameViewController
 
-
 -(Deck *)createDeck
 {
     return [[PlayingCardDeck alloc] init];
@@ -21,6 +20,15 @@
 
 -(NSUInteger)startingCardCount {
     return 48; //change this
+}
+
+-(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
+                 cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"PlayingCard" forIndexPath:indexPath];
+    Card *card = [self.game cardAtIndex:indexPath.item];
+    [self updateCell:cell usingCard:card animate:NO];
+    return cell;
 }
 
 -(void)updateCell:(UICollectionViewCell *)cell usingCard:(Card *)card animate:(BOOL)animate

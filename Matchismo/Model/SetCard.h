@@ -15,7 +15,6 @@
 @property(strong, nonatomic)NSString *shape;
 @property(strong, nonatomic)NSString *shade;
 
-@property(nonatomic)BOOL selected;
 
 +(NSUInteger)maxNumber;
 +(NSArray *)validColors;

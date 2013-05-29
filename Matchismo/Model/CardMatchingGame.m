@@ -17,10 +17,9 @@
 
 @implementation CardMatchingGame
 
-- (int)difficultyLevel
+-(int)difficultyLevel
 {
     if (!_difficultyLevel) _difficultyLevel = 3;
-    
     return _difficultyLevel;
 }
 
@@ -82,7 +81,7 @@
     if (!card.isUnplayable) {
         
         if (!card.isFaceUp){
-            self.notification = [NSString stringWithFormat:@"Flipped up %@", card.contents];
+            //self.notification = [NSString stringWithFormat:@"Flipped up %@", card.contents];
             
             NSMutableArray *activeCards = [[NSMutableArray alloc] init];
             for (Card *otherCard in self.cards) {

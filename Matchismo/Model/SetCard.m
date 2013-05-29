@@ -15,7 +15,7 @@
 {
     NSString *pluralizedShape = self.shape;
     if (self.number > 1) {
-        [pluralizedShape stringByAppendingString:@"s"];
+        pluralizedShape = [pluralizedShape stringByAppendingString:@"s"];
     }
     return [NSString stringWithFormat:@"%d %@ %@ %@",self.number,self.shade,self.color,pluralizedShape];
 }
@@ -28,15 +28,15 @@
 
 +(NSArray *)validColors
 {
-    return @[[UIColor redColor], [UIColor greenColor], [UIColor purpleColor]];
+    return @[@"Red", @"Green", @"Purple"];
 }
 +(NSArray *)validShapes
 {
-    return @[@"diamond",@"squiggle",@"oval"];
+    return @[@"Diamond",@"Squiggle",@"Oval"];
 }
 +(NSArray *)validShades
 {
-    return @[@"solid",@"striped",@"open"];
+    return @[@"Solid",@"Striped",@"Open"];
 }
 
 @end

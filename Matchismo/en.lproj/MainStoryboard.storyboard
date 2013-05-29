@@ -61,18 +61,6 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="tcE-ef-MXt">
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="161" id="2SJ-kI-yDT"/>
-                                </constraints>
-                                <segments>
-                                    <segment title="2-Card"/>
-                                    <segment title="3-Card"/>
-                                </segments>
-                                <connections>
-                                    <action selector="difficultyLevelTab:" destination="2" eventType="valueChanged" id="VmX-JY-gKa"/>
-                                </connections>
-                            </segmentedControl>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Welcome to the Playing Card Matching Game!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5eT-ut-yEL">
                                 <constraints>
                                     <constraint firstAttribute="width" constant="405" id="8rr-s9-dWP"/>
@@ -125,26 +113,35 @@
                                     <outletCollection property="gestureRecognizers" destination="tGT-92-SVu" appends="YES" id="2UR-BM-XNe"/>
                                 </connections>
                             </collectionView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="nrA-6V-Za9">
+                                <segments>
+                                    <segment title="2-Card"/>
+                                    <segment title="3-Card"/>
+                                </segments>
+                                <connections>
+                                    <action selector="difficultyLevelTab:" destination="2" eventType="valueChanged" id="06F-bY-aTC"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" red="0.10278018893218267" green="0.13696384889826196" blue="0.21204144021739135" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="hWW-Ju-DaV" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="9jG-jC-bbv"/>
-                            <constraint firstItem="tcE-ef-MXt" firstAttribute="leading" secondItem="5" secondAttribute="leading" constant="531" id="ECd-Ff-Jj6"/>
                             <constraint firstItem="RUd-bb-aJM" firstAttribute="leading" secondItem="5" secondAttribute="leading" type="default" id="GQM-pA-t1X"/>
                             <constraint firstItem="hWW-Ju-DaV" firstAttribute="leading" secondItem="5" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="Ixb-lW-P5Q"/>
                             <constraint firstItem="EGW-FP-d9E" firstAttribute="leading" secondItem="5" secondAttribute="leading" constant="76" id="Jij-qy-8bt"/>
                             <constraint firstItem="5eT-ut-yEL" firstAttribute="top" secondItem="RUd-bb-aJM" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="NXL-F0-41U"/>
                             <constraint firstItem="RUd-bb-aJM" firstAttribute="trailing" secondItem="5" secondAttribute="trailing" type="default" id="O83-xb-6ox"/>
                             <constraint firstItem="5eT-ut-yEL" firstAttribute="centerX" secondItem="RUd-bb-aJM" secondAttribute="centerX" type="default" id="Voq-xw-v8Q"/>
+                            <constraint firstItem="nrA-6V-Za9" firstAttribute="top" secondItem="EGW-FP-d9E" secondAttribute="top" type="default" id="Y1h-4b-qbs"/>
+                            <constraint firstItem="nrA-6V-Za9" firstAttribute="leading" secondItem="5" secondAttribute="leading" constant="547" id="bwg-sF-Ulk"/>
                             <constraint firstItem="RUd-bb-aJM" firstAttribute="top" secondItem="EGW-FP-d9E" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="caW-Jb-XrV"/>
-                            <constraint firstItem="tcE-ef-MXt" firstAttribute="top" secondItem="EGW-FP-d9E" secondAttribute="top" type="default" id="lM8-Xy-is4"/>
                             <constraint firstItem="EGW-FP-d9E" firstAttribute="top" secondItem="5" secondAttribute="top" constant="-7" id="sTO-MY-BZ7"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Playing Cards" image="playingCardTabIcon.png" id="xUE-hm-Rff"/>
                     <connections>
                         <outlet property="cardCollectionView" destination="RUd-bb-aJM" id="s1c-qn-38B"/>
-                        <outlet property="difficultyLevelTab" destination="tcE-ef-MXt" id="U2r-aK-5rn"/>
+                        <outlet property="difficultyLevelTab" destination="nrA-6V-Za9" id="zNl-aZ-A2P"/>
                         <outlet property="notificationLabel" destination="5eT-ut-yEL" id="Irw-hi-y0Q"/>
                         <outlet property="scoreLabel" destination="hWW-Ju-DaV" id="tEj-9S-LXw"/>
                     </connections>
@@ -197,9 +194,6 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Welcome to Set!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="scL-qc-gNd">
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="405" id="jNr-bI-oFk"/>
-                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -239,7 +233,6 @@
                                         </constraints>
                                         <size key="customSize" width="75" height="105"/>
                                         <connections>
-                                            <outlet property="playingCardView" destination="vDM-oT-Ywj" id="7fH-UH-2f5"/>
                                             <outlet property="setCardView" destination="vDM-oT-Ywj" id="Yve-Pf-YXT"/>
                                         </connections>
                                     </collectionViewCell>
@@ -252,15 +245,16 @@
                         </subviews>
                         <color key="backgroundColor" red="0.21204144019999999" green="0.124103763121953" blue="0.064974206608879564" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="scL-qc-gNd" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="F4s-Ix-5hY"/>
+                            <constraint firstItem="scL-qc-gNd" firstAttribute="leading" secondItem="UHM-Ek-OxG" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="JjK-Tj-9Tw"/>
                             <constraint firstAttribute="bottom" secondItem="DBw-Tx-3Qj" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="NP1-xT-cgR"/>
                             <constraint firstItem="yw2-PY-lcc" firstAttribute="top" secondItem="yiO-Qo-xBZ" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="VQD-VL-NIn"/>
-                            <constraint firstItem="scL-qc-gNd" firstAttribute="centerX" secondItem="yw2-PY-lcc" secondAttribute="centerX" type="default" id="WBj-me-paK"/>
                             <constraint firstItem="scL-qc-gNd" firstAttribute="top" secondItem="yw2-PY-lcc" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="ajk-bG-5U8"/>
-                            <constraint firstItem="yiO-Qo-xBZ" firstAttribute="leading" secondItem="UHM-Ek-OxG" secondAttribute="leading" constant="76" id="ecj-41-3EZ"/>
                             <constraint firstItem="DBw-Tx-3Qj" firstAttribute="leading" secondItem="UHM-Ek-OxG" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="giQ-rd-vrg"/>
                             <constraint firstItem="yiO-Qo-xBZ" firstAttribute="top" secondItem="UHM-Ek-OxG" secondAttribute="top" constant="-7" id="jOc-Ig-gyf"/>
                             <constraint firstItem="yw2-PY-lcc" firstAttribute="trailing" secondItem="UHM-Ek-OxG" secondAttribute="trailing" type="default" id="o8e-9R-fZm"/>
                             <constraint firstItem="yw2-PY-lcc" firstAttribute="leading" secondItem="UHM-Ek-OxG" secondAttribute="leading" type="default" id="olH-Ns-2WR"/>
+                            <constraint firstItem="yiO-Qo-xBZ" firstAttribute="centerX" secondItem="yw2-PY-lcc" secondAttribute="centerX" type="default" id="zR4-Tr-bGS"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Set" image="playingCardTabIcon.png" id="exX-Hk-cvx"/>
@@ -283,6 +277,62 @@
     <resources>
         <image name="playingCardTabIcon.png" width="30" height="30"/>
     </resources>
+    <classes>
+        <class className="CardGameViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CardGameViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="dealButton"/>
+                <relationship kind="action" name="flipCard:" candidateClass="UITapGestureRecognizer"/>
+                <relationship kind="outlet" name="cardCollectionView" candidateClass="UICollectionView"/>
+                <relationship kind="outlet" name="notificationLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="scoreLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="PlayingCardCollectionViewCell" superclassName="UICollectionViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PlayingCardCollectionViewCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="playingCardView" candidateClass="PlayingCardView"/>
+            </relationships>
+        </class>
+        <class className="PlayingCardGameViewController" superclassName="CardGameViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PlayingCardGameViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="difficultyLevelTab:" candidateClass="UISegmentedControl"/>
+                <relationship kind="action" name="flipCard:" candidateClass="UITapGestureRecognizer"/>
+                <relationship kind="outlet" name="difficultyLevelTab" candidateClass="UISegmentedControl"/>
+            </relationships>
+        </class>
+        <class className="PlayingCardView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PlayingCardView.h"/>
+        </class>
+        <class className="SetCardCollectionViewCell" superclassName="UICollectionViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SetCardCollectionViewCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="setCardView" candidateClass="SetCardView"/>
+            </relationships>
+        </class>
+        <class className="SetCardGameViewController" superclassName="CardGameViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SetCardGameViewController.h"/>
+        </class>
+        <class className="SetCardView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SetCardView.h"/>
+        </class>
+        <class className="UICollectionReusableView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionReusableView.h"/>
+        </class>
+        <class className="UICollectionViewCell" superclassName="UICollectionReusableView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewCell.h"/>
+        </class>
+        <class className="UICollectionViewFlowLayout" superclassName="UICollectionViewLayout">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewFlowLayout.h"/>
+        </class>
+        <class className="UICollectionViewLayout" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewLayout.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>

@@ -13,6 +13,11 @@
 
 @implementation SetCardGameViewController
 
+-(void)viewDidLoad
+{
+    self.game.difficultyLevel = 3;
+}
+
 -(Deck *)createDeck
 {
     return [[SetCardDeck alloc] init];
@@ -31,7 +36,9 @@
     return cell;
 }
 
--(void)updateCell:(UICollectionViewCell *)cell usingCard:(Card *)card animate:(BOOL)animate
+-(void)updateCell:(UICollectionViewCell *)cell
+        usingCard:(Card *)card
+          animate:(BOOL)animate
 {
     if ([cell isKindOfClass:[SetCardCollectionViewCell class]]) {
         SetCardView *setCardView = ((SetCardCollectionViewCell *)cell).setCardView;
@@ -43,14 +50,14 @@
             setCardView.shape = setCard.shape;
             if (animate) {
                 [UIView transitionWithView:setCardView
-                                  duration:0.2
+                                  duration:0.1
                                    options:UIViewAnimationOptionTransitionCrossDissolve
                                 animations:^{
-                                    setCardView.selected = setCard.selected;
+                                    setCardView.selected = setCard.isFaceUp;
                                 }
                                 completion:NULL];
             } else {
-                setCardView.selected = setCard.selected;
+                setCardView.selected = setCard.isFaceUp;
             }
             setCardView.alpha = setCard.isUnplayable ? 0.3 : 1.0;
         }

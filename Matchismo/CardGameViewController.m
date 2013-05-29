@@ -13,20 +13,11 @@
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 @property (weak, nonatomic) IBOutlet UILabel *notificationLabel;
 @property (weak, nonatomic) IBOutlet UICollectionView *cardCollectionView;
-@property (strong, nonatomic)CardMatchingGame *game;
 @property (strong, nonatomic)NSMutableArray *animatedIndexes;
-
-@property (weak, nonatomic) IBOutlet UISegmentedControl *difficultyLevelTab;
-
 
 @end
 
 @implementation CardGameViewController
-
--(void)viewDidLoad
-{
-    self.game.difficultyLevel = self.difficultyLevelTab.selectedSegmentIndex +2;
-}
 
 -(NSMutableArray *)animatedIndexes {
     if (!_animatedIndexes) _animatedIndexes = [[NSMutableArray alloc] init];
@@ -71,8 +62,6 @@
 
 - (IBAction)dealButton {
     self.game = nil;
-    self.difficultyLevelTab.enabled = YES;
-    self.difficultyLevelTab.selectedSegmentIndex = self.game.difficultyLevel - 2;
     
     //Added to give deal button animation
     for (UICollectionViewCell *cell in [self.cardCollectionView visibleCells]) {
@@ -99,20 +88,15 @@
 }
 
 - (IBAction)flipCard:(UITapGestureRecognizer *)sender {
+    NSLog(@"Difficulty level: %d",self.game.difficultyLevel);
     CGPoint tapLocation = [sender locationInView:self.cardCollectionView];
     NSIndexPath *indexPath = [self.cardCollectionView indexPathForItemAtPoint:tapLocation];
     if (indexPath) {
-        self.difficultyLevelTab.enabled = NO;
         [self.game flipCardAtIndex:indexPath.item];
         [self.animatedIndexes addObject:indexPath];
         [self updateUI];
         [self.animatedIndexes removeObject:indexPath];
     }
-}
-
-
-- (IBAction)difficultyLevelTab:(UISegmentedControl *)sender {
-    self.game.difficultyLevel = sender.selectedSegmentIndex + 2;
 }
 
 

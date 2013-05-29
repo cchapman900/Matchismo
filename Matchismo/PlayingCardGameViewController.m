@@ -11,11 +11,34 @@
 #import "PlayingCard.h"
 #import "PlayingCardCollectionViewCell.h"
 
+@interface PlayingCardGameViewController ()
+@property (weak, nonatomic) IBOutlet UISegmentedControl *difficultyLevelTab;
+
+@end
+
 @implementation PlayingCardGameViewController
+
+-(void)viewDidLoad
+{
+    self.game.difficultyLevel = [self getDifficultyLevel];
+}
 
 -(Deck *)createDeck
 {
     return [[PlayingCardDeck alloc] init];
+    
+}
+
+-(int)getDifficultyLevel
+{
+    return self.difficultyLevelTab.selectedSegmentIndex +2;
+}
+
+-(void)dealButton
+{
+    self.difficultyLevelTab.enabled = YES;
+    [super dealButton];
+    self.game.difficultyLevel = [self getDifficultyLevel];
 }
 
 -(NSUInteger)startingCardCount {
@@ -31,7 +54,9 @@
     return cell;
 }
 
--(void)updateCell:(UICollectionViewCell *)cell usingCard:(Card *)card animate:(BOOL)animate
+-(void)updateCell:(UICollectionViewCell *)cell
+        usingCard:(Card *)card
+          animate:(BOOL)animate
 {
     if ([cell isKindOfClass:[PlayingCardCollectionViewCell class]]) {
         PlayingCardView *playingCardView = ((PlayingCardCollectionViewCell *)cell).playingCardView;
@@ -54,5 +79,15 @@
         }
     }
 }
+
+- (IBAction)flipCard:(UITapGestureRecognizer *)sender {
+    [super flipCard:sender];
+    self.difficultyLevelTab.enabled = NO;
+}
+
+- (IBAction)difficultyLevelTab:(UISegmentedControl *)sender {
+    self.game.difficultyLevel = sender.selectedSegmentIndex + 2;
+}
+
 
 @end

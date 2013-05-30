@@ -88,7 +88,6 @@
 }
 
 - (IBAction)flipCard:(UITapGestureRecognizer *)sender {
-    NSLog(@"Difficulty level: %d",self.game.difficultyLevel);
     CGPoint tapLocation = [sender locationInView:self.cardCollectionView];
     NSIndexPath *indexPath = [self.cardCollectionView indexPathForItemAtPoint:tapLocation];
     if (indexPath) {

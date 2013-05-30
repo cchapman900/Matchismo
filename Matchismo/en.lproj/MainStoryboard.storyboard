@@ -257,7 +257,7 @@
                             <constraint firstItem="yiO-Qo-xBZ" firstAttribute="centerX" secondItem="yw2-PY-lcc" secondAttribute="centerX" type="default" id="zR4-Tr-bGS"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Set" image="playingCardTabIcon.png" id="exX-Hk-cvx"/>
+                    <tabBarItem key="tabBarItem" title="Set" image="setCardTabIcon.png" id="exX-Hk-cvx"/>
                     <connections>
                         <outlet property="cardCollectionView" destination="yw2-PY-lcc" id="Rde-ue-FtI"/>
                         <outlet property="notificationLabel" destination="scL-qc-gNd" id="CjW-ix-tOT"/>
@@ -276,6 +276,7 @@
     </scenes>
     <resources>
         <image name="playingCardTabIcon.png" width="30" height="30"/>
+        <image name="setCardTabIcon.png" width="30" height="30"/>
     </resources>
     <classes>
         <class className="CardGameViewController" superclassName="UIViewController">

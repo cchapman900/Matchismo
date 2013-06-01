@@ -65,7 +65,6 @@
     for (int i = 1; i <= self.number; i++) {
         shape = [shape stringByAppendingString:[SetCard stringToShape][self.shape]];
     }
-    NSLog(@"Number: %d",self.number);
     return [NSString stringWithFormat:@"%@ %@ %@",self.shade,self.color,shape];
 }
 

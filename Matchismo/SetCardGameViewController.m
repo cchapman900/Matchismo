@@ -24,7 +24,7 @@
 }
 
 -(NSUInteger)startingCardCount {
-    return 48; //change this
+    return 12; //change this
 }
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
@@ -36,10 +36,29 @@
     return cell;
 }
 
+-(void)replaceInactiveCards
+{
+    NSMutableArray *unplayableIndexes = [[NSMutableArray alloc] init];
+    for (Card *card in self.game.cards) {
+        if (card.isUnplayable) {
+            NSLog(@"Working");
+            [unplayableIndexes addObject:[NSNumber numberWithInteger:[self.game.cards indexOfObject:card]]];
+        }
+    }
+    
+    for (NSNumber *index in unplayableIndexes) {
+        [self.game replaceInactiveCardsAtIndex:[index integerValue]];
+        NSLog(@"%d",[index integerValue]);
+    }
+}
+
 -(void)updateCell:(UICollectionViewCell *)cell
         usingCard:(Card *)card
           animate:(BOOL)animate
 {
+    [self replaceInactiveCards];
+    
+    
     if ([cell isKindOfClass:[SetCardCollectionViewCell class]]) {
         SetCardView *setCardView = ((SetCardCollectionViewCell *)cell).setCardView;
         if ([card isKindOfClass:[SetCard class]]) {

@@ -11,7 +11,7 @@
 @interface CardMatchingGame()
 
 @property(nonatomic, readwrite) int score;
-@property(strong, nonatomic) NSMutableArray *cards;
+@property(strong, nonatomic) Deck *deck;
 
 @end
 
@@ -35,14 +35,21 @@
     return _cards;
 }
 
+-(void)replaceInactiveCardsAtIndex:(NSUInteger)index
+{
+    self.cards[index] = [self.deck drawRandomCard];
+}
 
 -(id)initWithCardCount:(NSUInteger)count usingDeck:(Deck *)deck
 {
     self = [super init];
     
+    _deck = deck;
+    _numCardsInPlay = count;
+    
     if (self) {
         for (int i = 0; i < count; i++) {
-            Card *card = [deck drawRandomCard];
+            Card *card = [self.deck drawRandomCard];
             if (!card) {
                 self = nil;
             } else {
@@ -74,14 +81,15 @@
 #define MISMATCH_PENALTY 2
 #define FLIP_COST 0
 
+
 -(void)flipCardAtIndex:(NSUInteger)index
 {
     Card *card = [self cardAtIndex:index];
+    self.notification = [NSString stringWithFormat:@""];
     
     if (!card.isUnplayable) {
         
         if (!card.isFaceUp){
-            //self.notification = [NSString stringWithFormat:@"Flipped up %@", card.contents];
             
             NSMutableArray *activeCards = [[NSMutableArray alloc] init];
             for (Card *otherCard in self.cards) {

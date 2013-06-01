@@ -42,7 +42,7 @@
 }
 
 -(NSUInteger)startingCardCount {
-    return 48; //change this
+    return 22; //change this
 }
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView

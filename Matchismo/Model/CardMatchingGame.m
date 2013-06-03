@@ -35,11 +35,6 @@
     return _cards;
 }
 
--(void)replaceInactiveCardsAtIndex:(NSUInteger)index
-{
-    self.cards[index] = [self.deck drawRandomCard];
-}
-
 -(id)initWithCardCount:(NSUInteger)count usingDeck:(Deck *)deck
 {
     self = [super init];
@@ -59,6 +54,12 @@
     }
     
     return self;
+}
+
+-(void)addCard
+{
+    self.numCardsInPlay += 1;
+    [self.cards addObject:[self.deck drawRandomCard]]; //add in some error checking for when out of cards
 }
 
 -(Card *)cardAtIndex:(NSUInteger)index
@@ -85,7 +86,7 @@
 -(void)flipCardAtIndex:(NSUInteger)index
 {
     Card *card = [self cardAtIndex:index];
-    self.notification = [NSString stringWithFormat:@""];
+    self.notification = [NSString stringWithFormat:@" "];
     
     if (!card.isUnplayable) {
         

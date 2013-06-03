@@ -26,9 +26,9 @@
 
 -(void)flipCardAtIndex:(NSUInteger)index;
 
--(void)replaceInactiveCardsAtIndex:(NSUInteger)index;
-
 - (Card *)cardAtIndex:(NSUInteger)index;
+
+-(void)addCard;
 
 
 @end

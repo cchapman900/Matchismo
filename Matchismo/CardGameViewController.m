@@ -33,7 +33,8 @@
 -(NSInteger)collectionView:(UICollectionView *)collectionView
     numberOfItemsInSection:(NSInteger)section
 {
-    return self.startingCardCount; //will need to ask the game how many cards are currently in play
+    NSLog(@"Number of cards in play: %d (%@)",self.game.numCardsInPlay, [self class]);
+    return self.game.numCardsInPlay;
 }
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
@@ -78,6 +79,7 @@
 
 -(void)updateUI
 {
+    
     for (UICollectionViewCell *cell in [self.cardCollectionView visibleCells]) {
         NSIndexPath *indexPath = [self.cardCollectionView indexPathForCell:cell];
         Card *card = [self.game cardAtIndex:indexPath.item];
@@ -85,6 +87,14 @@
     }
     self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d",self.game.score];
     self.notificationLabel.text = self.game.notification;
+}
+
+- (IBAction)addCardButton {
+    [self.game addCard];
+    [self.game addCard];
+    [self.game addCard];
+    [self.cardCollectionView scrollToItemAtIndexPath:[[self.cardCollectionView indexPathsForVisibleItems] lastObject] atScrollPosition:UICollectionViewScrollPositionBottom animated:YES];
+    [self.cardCollectionView reloadData];
 }
 
 - (IBAction)flipCard:(UITapGestureRecognizer *)sender {

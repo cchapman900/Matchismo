@@ -23,9 +23,11 @@
     return [[SetCardDeck alloc] init];
 }
 
--(NSUInteger)startingCardCount {
-    return 12; //change this
+-(NSUInteger)startingCardCount
+{
+    return 12;
 }
+
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
                  cellForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -36,27 +38,10 @@
     return cell;
 }
 
--(void)replaceInactiveCards
-{
-    NSMutableArray *unplayableIndexes = [[NSMutableArray alloc] init];
-    for (Card *card in self.game.cards) {
-        if (card.isUnplayable) {
-            NSLog(@"Working");
-            [unplayableIndexes addObject:[NSNumber numberWithInteger:[self.game.cards indexOfObject:card]]];
-        }
-    }
-    
-    for (NSNumber *index in unplayableIndexes) {
-        [self.game replaceInactiveCardsAtIndex:[index integerValue]];
-        NSLog(@"%d",[index integerValue]);
-    }
-}
-
 -(void)updateCell:(UICollectionViewCell *)cell
         usingCard:(Card *)card
           animate:(BOOL)animate
 {
-    [self replaceInactiveCards];
     
     
     if ([cell isKindOfClass:[SetCardCollectionViewCell class]]) {

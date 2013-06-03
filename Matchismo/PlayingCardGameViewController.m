@@ -29,6 +29,11 @@
     
 }
 
+-(NSUInteger)startingCardCount
+{
+    return 22;
+}
+
 -(int)getDifficultyLevel
 {
     return self.difficultyLevelTab.selectedSegmentIndex +2;
@@ -41,9 +46,7 @@
     self.game.difficultyLevel = [self getDifficultyLevel];
 }
 
--(NSUInteger)startingCardCount {
-    return 22; //change this
-}
+
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
                  cellForItemAtIndexPath:(NSIndexPath *)indexPath

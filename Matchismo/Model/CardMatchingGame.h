@@ -19,7 +19,6 @@
 
 @property(nonatomic)int numCardsInPlay;
 
-@property(strong, nonatomic) NSMutableArray *cards;
 
 -(id)initWithCardCount:(NSUInteger)count
              usingDeck:(Deck *)deck;

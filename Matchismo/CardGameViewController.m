@@ -12,7 +12,6 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 @property (weak, nonatomic) IBOutlet UILabel *notificationLabel;
-@property (weak, nonatomic) IBOutlet UICollectionView *cardCollectionView;
 @property (strong, nonatomic)NSMutableArray *animatedIndexes;
 
 @end
@@ -84,17 +83,10 @@
         NSIndexPath *indexPath = [self.cardCollectionView indexPathForCell:cell];
         Card *card = [self.game cardAtIndex:indexPath.item];
         [self updateCell:cell usingCard:card animate:([self.animatedIndexes containsObject:indexPath])];
+
     }
     self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d",self.game.score];
     self.notificationLabel.text = self.game.notification;
-}
-
-- (IBAction)addCardButton {
-    [self.game addCard];
-    [self.game addCard];
-    [self.game addCard];
-    [self.cardCollectionView scrollToItemAtIndexPath:[[self.cardCollectionView indexPathsForVisibleItems] lastObject] atScrollPosition:UICollectionViewScrollPositionBottom animated:YES];
-    [self.cardCollectionView reloadData];
 }
 
 - (IBAction)flipCard:(UITapGestureRecognizer *)sender {

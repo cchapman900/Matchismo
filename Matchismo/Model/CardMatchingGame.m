@@ -12,6 +12,7 @@
 
 @property(nonatomic, readwrite) int score;
 @property(strong, nonatomic) Deck *deck;
+@property(strong, nonatomic) NSMutableArray *cards;
 
 @end
 
@@ -61,6 +62,7 @@
     self.numCardsInPlay += 1;
     [self.cards addObject:[self.deck drawRandomCard]]; //add in some error checking for when out of cards
 }
+
 
 -(Card *)cardAtIndex:(NSUInteger)index
 {

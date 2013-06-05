@@ -38,6 +38,21 @@
     return cell;
 }
 
+
+- (IBAction)addCardButton {
+    [self.game addCard];
+    [self.game addCard];
+    [self.game addCard];
+    
+    NSIndexPath *indexPathToScroll = [[self.cardCollectionView indexPathsForVisibleItems] lastObject];
+    
+    [self.cardCollectionView reloadData];
+    
+    NSLog(@"Visible items: %@",[self.cardCollectionView indexPathsForVisibleItems]);
+    [self.cardCollectionView scrollToItemAtIndexPath:indexPathToScroll atScrollPosition:UICollectionViewScrollPositionBottom animated:YES];
+    
+}
+
 -(void)updateCell:(UICollectionViewCell *)cell
         usingCard:(Card *)card
           animate:(BOOL)animate

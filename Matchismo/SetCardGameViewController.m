@@ -23,11 +23,9 @@
     return [[SetCardDeck alloc] init];
 }
 
--(NSUInteger)startingCardCount
-{
-    return 12;
+-(NSUInteger)startingCardCount {
+    return 12; //change this
 }
-
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
                  cellForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -38,27 +36,10 @@
     return cell;
 }
 
-- (IBAction)addCardsButton {
-    [self.game addThisManyCards:3];
-    
-    NSIndexPath *indexPathToScroll = [[self.cardCollectionView indexPathsForVisibleItems] lastObject];
-    
-    [self.cardCollectionView reloadData];
-    
-    NSLog(@"Last Object: %@",indexPathToScroll);
-    
-    [self.cardCollectionView scrollToItemAtIndexPath:indexPathToScroll atScrollPosition:UICollectionViewScrollPositionBottom animated:YES];
-    
-    [self.cardCollectionView reloadData];
-}
-
-
 -(void)updateCell:(UICollectionViewCell *)cell
         usingCard:(Card *)card
           animate:(BOOL)animate
 {
-    
-    
     if ([cell isKindOfClass:[SetCardCollectionViewCell class]]) {
         SetCardView *setCardView = ((SetCardCollectionViewCell *)cell).setCardView;
         if ([card isKindOfClass:[SetCard class]]) {

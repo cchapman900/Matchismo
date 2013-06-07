@@ -11,15 +11,6 @@
 
 @interface CardMatchingGame : NSObject
 
-@property(nonatomic, readonly) int score;
-
-@property(nonatomic)int difficultyLevel;
-
-@property(strong, nonatomic)NSString *notification;
-
-@property(nonatomic)int numCardsInPlay;
-
-
 -(id)initWithCardCount:(NSUInteger)count
              usingDeck:(Deck *)deck;
 
@@ -29,5 +20,16 @@
 
 -(void)addThisManyCards:(NSUInteger)number;
 
+@property(nonatomic, readonly) int score;
+
+@property(nonatomic)int difficultyLevel;
+
+@property(strong, nonatomic)NSString *notification;
+
+@property(nonatomic)NSUInteger numCardsInPlay;
+
+@property(strong, nonatomic)Deck *deck;
+
+@property(strong, nonatomic) NSMutableArray *cards;//is there another way to subclass this without making it public?
 
 @end

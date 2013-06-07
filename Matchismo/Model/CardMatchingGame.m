@@ -11,8 +11,6 @@
 @interface CardMatchingGame()
 
 @property(nonatomic, readwrite) int score;
-@property(strong, nonatomic) Deck *deck;
-@property(strong, nonatomic) NSMutableArray *cards;
 
 @end
 
@@ -36,16 +34,17 @@
     return _cards;
 }
 
+
 -(id)initWithCardCount:(NSUInteger)count usingDeck:(Deck *)deck
 {
     self = [super init];
     
-    _deck = deck;
     _numCardsInPlay = count;
+    _deck = deck;
     
     if (self) {
         for (int i = 0; i < count; i++) {
-            Card *card = [self.deck drawRandomCard];
+            Card *card = [deck drawRandomCard];
             if (!card) {
                 self = nil;
             } else {
@@ -57,19 +56,16 @@
     return self;
 }
 
--(Card *)getLastCard
-{
-    return [self.cards lastObject];
-}
-
 -(void)addThisManyCards:(NSUInteger)number
 {
+    //adding this as a penalty for clicking the button
+    self.score -= self.numCardsInPlay;
+    
     for (int i = 1; i<=number; i++) {
-        [self.cards addObject:[self.deck drawRandomCard]]; //add in some error checking for when out of cards
-        self.numCardsInPlay = self.cards.count;
+        [self.cards addObject:[self.deck drawRandomCard]];//add error checking
+        self.numCardsInPlay = [self.cards count];
     }
 }
-
 
 -(Card *)cardAtIndex:(NSUInteger)index
 {
@@ -91,15 +87,14 @@
 #define MISMATCH_PENALTY 2
 #define FLIP_COST 0
 
-
 -(void)flipCardAtIndex:(NSUInteger)index
 {
     Card *card = [self cardAtIndex:index];
-    self.notification = [NSString stringWithFormat:@" "];
     
     if (!card.isUnplayable) {
         
         if (!card.isFaceUp){
+            //self.notification = [NSString stringWithFormat:@"Flipped up %@", card.contents];
             
             NSMutableArray *activeCards = [[NSMutableArray alloc] init];
             for (Card *otherCard in self.cards) {

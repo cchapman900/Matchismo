@@ -11,18 +11,13 @@
 
 @interface CardGameViewController : UIViewController
 
+@property (nonatomic)NSUInteger startingCardCount; //abstract
 @property (strong, nonatomic)CardMatchingGame *game;
 
-@property (nonatomic)NSUInteger startingCardCount;//abstract
-
-@property (weak, nonatomic) IBOutlet UICollectionView *cardCollectionView;
-
 -(Deck *)createDeck; //abstract
-
 -(void)updateCell:(UICollectionViewCell *)cell usingCard:(Card *)card animate:(BOOL)animate; //abstract
 
 - (IBAction)dealButton;
-
 - (IBAction)flipCard:(UITapGestureRecognizer *)sender;
 
 @end

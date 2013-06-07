@@ -12,6 +12,7 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 @property (weak, nonatomic) IBOutlet UILabel *notificationLabel;
+@property (weak, nonatomic) IBOutlet UICollectionView *cardCollectionView;
 @property (strong, nonatomic)NSMutableArray *animatedIndexes;
 
 @end
@@ -32,7 +33,6 @@
 -(NSInteger)collectionView:(UICollectionView *)collectionView
     numberOfItemsInSection:(NSInteger)section
 {
-    NSLog(@"Number of cards in play: %d (%@)",self.game.numCardsInPlay, [self class]);
     return self.game.numCardsInPlay;
 }
 
@@ -52,6 +52,20 @@
     if (!_game) _game = [[CardMatchingGame alloc] initWithCardCount:self.startingCardCount
                                                           usingDeck:[self createDeck]];
     return _game;
+}
+
+- (IBAction)dealThree {
+    [self.game addThisManyCards:3];
+    
+    [self.cardCollectionView reloadData];
+    
+    NSUInteger lastCard = [self.game.cards count]-1;
+    NSUInteger section = [self.cardCollectionView numberOfSections]-1;
+    NSIndexPath *lastCardIndex = [NSIndexPath indexPathForItem:lastCard inSection:section];
+    
+    [self.cardCollectionView scrollToItemAtIndexPath:lastCardIndex
+                                    atScrollPosition:UICollectionViewScrollPositionBottom
+                                            animated:YES];
 }
 
 -(Deck *)createDeck {
@@ -76,31 +90,14 @@
     [self.animatedIndexes removeAllObjects];
 }
 
--(NSIndexPath *)lastCardIndex
-{
-    Card *lastCard = [self.game cardAtIndex:self.game.numCardsInPlay-1];
-    for (UICollectionViewCell *cell in self.cardCollectionView ) {
-        NSIndexPath *indexPath = [self.cardCollectionView indexPathForCell:cell];
-        if ([self.game cardAtIndex:indexPath.item]== lastCard) {
-            return indexPath;
-        }
-    }
-    
-    NSLog(@"Did not find index path");
-    return nil;
-}
-
 -(void)updateUI
 {
-    
-    //change this
-    NSLog(@"Last cell: %@",[self lastCardIndex]);
+    [self.cardCollectionView reloadData];
     
     for (UICollectionViewCell *cell in [self.cardCollectionView visibleCells]) {
         NSIndexPath *indexPath = [self.cardCollectionView indexPathForCell:cell];
         Card *card = [self.game cardAtIndex:indexPath.item];
         [self updateCell:cell usingCard:card animate:([self.animatedIndexes containsObject:indexPath])];
-
     }
     self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d",self.game.score];
     self.notificationLabel.text = self.game.notification;

@@ -76,8 +76,25 @@
     [self.animatedIndexes removeAllObjects];
 }
 
+-(NSIndexPath *)lastCardIndex
+{
+    Card *lastCard = [self.game cardAtIndex:self.game.numCardsInPlay-1];
+    for (UICollectionViewCell *cell in self.cardCollectionView ) {
+        NSIndexPath *indexPath = [self.cardCollectionView indexPathForCell:cell];
+        if ([self.game cardAtIndex:indexPath.item]== lastCard) {
+            return indexPath;
+        }
+    }
+    
+    NSLog(@"Did not find index path");
+    return nil;
+}
+
 -(void)updateUI
 {
+    
+    //change this
+    NSLog(@"Last cell: %@",[self lastCardIndex]);
     
     for (UICollectionViewCell *cell in [self.cardCollectionView visibleCells]) {
         NSIndexPath *indexPath = [self.cardCollectionView indexPathForCell:cell];

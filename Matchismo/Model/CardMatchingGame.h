@@ -27,7 +27,7 @@
 
 - (Card *)cardAtIndex:(NSUInteger)index;
 
--(void)addCard;
+-(void)addThisManyCards:(NSUInteger)number;
 
 
 @end

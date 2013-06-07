@@ -57,10 +57,17 @@
     return self;
 }
 
--(void)addCard
+-(Card *)getLastCard
 {
-    self.numCardsInPlay += 1;
-    [self.cards addObject:[self.deck drawRandomCard]]; //add in some error checking for when out of cards
+    return [self.cards lastObject];
+}
+
+-(void)addThisManyCards:(NSUInteger)number
+{
+    for (int i = 1; i<=number; i++) {
+        [self.cards addObject:[self.deck drawRandomCard]]; //add in some error checking for when out of cards
+        self.numCardsInPlay = self.cards.count;
+    }
 }
 
 

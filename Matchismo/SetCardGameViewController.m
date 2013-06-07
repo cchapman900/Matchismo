@@ -38,20 +38,20 @@
     return cell;
 }
 
-
-- (IBAction)addCardButton {
-    [self.game addCard];
-    [self.game addCard];
-    [self.game addCard];
+- (IBAction)addCardsButton {
+    [self.game addThisManyCards:3];
     
     NSIndexPath *indexPathToScroll = [[self.cardCollectionView indexPathsForVisibleItems] lastObject];
     
     [self.cardCollectionView reloadData];
     
-    NSLog(@"Visible items: %@",[self.cardCollectionView indexPathsForVisibleItems]);
+    NSLog(@"Last Object: %@",indexPathToScroll);
+    
     [self.cardCollectionView scrollToItemAtIndexPath:indexPathToScroll atScrollPosition:UICollectionViewScrollPositionBottom animated:YES];
     
+    [self.cardCollectionView reloadData];
 }
+
 
 -(void)updateCell:(UICollectionViewCell *)cell
         usingCard:(Card *)card

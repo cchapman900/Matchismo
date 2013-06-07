@@ -23,6 +23,7 @@
     return [[SetCardDeck alloc] init];
 }
 
+
 -(NSUInteger)startingCardCount {
     return 12; //change this
 }
@@ -62,6 +63,38 @@
             setCardView.alpha = setCard.isUnplayable ? 0.3 : 1.0;
         }
     }
+}
+
+
+- (IBAction)flipCard:(UITapGestureRecognizer *)sender
+{
+    //this looks really ugly
+    
+    [super flipCard:sender];
+    
+    
+    NSMutableIndexSet *unplayableCardIndexes = [[NSMutableIndexSet alloc] init];
+    NSMutableArray *unplayableCardIndexArray= [[NSMutableArray alloc]init];
+    NSUInteger section = self.cardCollectionView.numberOfSections-1;
+    
+    for (Card *card in self.game.cards) {
+        if (card.isUnplayable) {
+            self.game.numCardsInPlay -= 1;
+            NSUInteger cardIndex = [self.game.cards indexOfObject:card];
+            [unplayableCardIndexes addIndex:cardIndex];
+            NSIndexPath *cardIndexPath = [[NSIndexPath alloc]init];
+            cardIndexPath = [NSIndexPath indexPathForItem:cardIndex inSection:section];
+            [unplayableCardIndexArray addObject:cardIndexPath];
+        }
+    }
+    
+    
+    
+    
+    [self.game.cards removeObjectsAtIndexes:unplayableCardIndexes];
+    
+    
+    [self.cardCollectionView deleteItemsAtIndexPaths:unplayableCardIndexArray];
 }
 
 

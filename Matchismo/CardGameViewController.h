@@ -14,6 +14,8 @@
 @property (nonatomic)NSUInteger startingCardCount; //abstract
 @property (strong, nonatomic)CardMatchingGame *game;
 
+@property (weak, nonatomic) IBOutlet UICollectionView *cardCollectionView;//there should probably be a way to keep this private as well. I moved it here so I could subclass it in SetCardGameViewController on the flipCard method
+
 -(Deck *)createDeck; //abstract
 -(void)updateCell:(UICollectionViewCell *)cell usingCard:(Card *)card animate:(BOOL)animate; //abstract
 

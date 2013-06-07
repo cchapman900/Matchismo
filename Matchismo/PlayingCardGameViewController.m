@@ -13,6 +13,7 @@
 
 @interface PlayingCardGameViewController ()
 @property (weak, nonatomic) IBOutlet UISegmentedControl *difficultyLevelTab;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *numCardsTab;
 
 @end
 
@@ -21,6 +22,7 @@
 -(void)viewDidLoad
 {
     self.game.difficultyLevel = [self getDifficultyLevel];
+    self.game.numCardsInPlay = [self getNumCardsInPlay];
 }
 
 -(Deck *)createDeck
@@ -34,15 +36,31 @@
     return self.difficultyLevelTab.selectedSegmentIndex +2;
 }
 
+-(NSUInteger)getNumCardsInPlay
+{
+    NSUInteger multiplier = 1;
+    for (int i = 1; i <= self.numCardsTab.selectedSegmentIndex; i++) {
+        multiplier = multiplier + multiplier;
+    }
+    
+    return 12 * multiplier;
+}
+
+- (IBAction)numCardsTab:(UISegmentedControl *)sender {
+    self.game.numCardsInPlay = [self getNumCardsInPlay];
+    [self.cardCollectionView reloadData];
+}
+
 -(void)dealButton
 {
     self.difficultyLevelTab.enabled = YES;
+    self.numCardsTab.enabled = YES;
     [super dealButton];
     self.game.difficultyLevel = [self getDifficultyLevel];
 }
 
 -(NSUInteger)startingCardCount {
-    return 48; //change this
+    return [self getNumCardsInPlay]; //change this
 }
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
@@ -58,6 +76,8 @@
         usingCard:(Card *)card
           animate:(BOOL)animate
 {
+    if (animate) {
+    }
     if ([cell isKindOfClass:[PlayingCardCollectionViewCell class]]) {
         PlayingCardView *playingCardView = ((PlayingCardCollectionViewCell *)cell).playingCardView;
         if ([card isKindOfClass:[PlayingCard class]]) {
@@ -83,6 +103,7 @@
 - (IBAction)flipCard:(UITapGestureRecognizer *)sender {
     [super flipCard:sender];
     self.difficultyLevelTab.enabled = NO;
+    self.numCardsTab.enabled = NO;
 }
 
 - (IBAction)difficultyLevelTab:(UISegmentedControl *)sender {

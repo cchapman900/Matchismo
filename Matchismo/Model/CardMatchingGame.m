@@ -59,7 +59,7 @@
 -(void)addThisManyCards:(NSUInteger)number
 {
     //adding this as a penalty for clicking the button
-    self.score -= self.numCardsInPlay;
+    self.score =- self.numCardsInPlay;
     
     for (int i = 1; i<=number; i++) {
         [self.cards addObject:[self.deck drawRandomCard]];//add error checking
@@ -94,7 +94,7 @@
     if (!card.isUnplayable) {
         
         if (!card.isFaceUp){
-            //self.notification = [NSString stringWithFormat:@"Flipped up %@", card.contents];
+            self.notification = @" ";
             
             NSMutableArray *activeCards = [[NSMutableArray alloc] init];
             for (Card *otherCard in self.cards) {

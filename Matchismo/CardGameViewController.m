@@ -12,7 +12,6 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 @property (weak, nonatomic) IBOutlet UILabel *notificationLabel;
-@property (weak, nonatomic) IBOutlet UICollectionView *cardCollectionView;
 @property (strong, nonatomic)NSMutableArray *animatedIndexes;
 
 @end
@@ -54,18 +53,28 @@
     return _game;
 }
 
+#define NUM_CARDS_TO_DEAL 3
 - (IBAction)dealThree {
-    [self.game addThisManyCards:3];
+    [self.game addThisManyCards:NUM_CARDS_TO_DEAL];
     
-    [self.cardCollectionView reloadData];
-    
-    NSUInteger lastCard = [self.game.cards count]-1;
+    NSMutableArray *newCards = [[NSMutableArray alloc] init];
     NSUInteger section = [self.cardCollectionView numberOfSections]-1;
+    NSUInteger lastCard = [self.game.cards count]-1;
+    
+    for (NSUInteger i = lastCard - 2; i<=lastCard; i++) {
+        NSIndexPath *newCardIndexPath = [NSIndexPath indexPathForItem:i inSection:section];
+        [newCards addObject:newCardIndexPath];
+    }
+    
+    [self.cardCollectionView insertItemsAtIndexPaths:newCards];
+    
     NSIndexPath *lastCardIndex = [NSIndexPath indexPathForItem:lastCard inSection:section];
     
     [self.cardCollectionView scrollToItemAtIndexPath:lastCardIndex
                                     atScrollPosition:UICollectionViewScrollPositionBottom
                                             animated:YES];
+    
+    [self updateUI];
 }
 
 -(Deck *)createDeck {
@@ -88,11 +97,13 @@
     
     //end here.
     [self.animatedIndexes removeAllObjects];
+    
+    [self.cardCollectionView reloadData];
 }
 
 -(void)updateUI
 {
-    [self.cardCollectionView reloadData];
+    //[self.cardCollectionView reloadData];
     
     for (UICollectionViewCell *cell in [self.cardCollectionView visibleCells]) {
         NSIndexPath *indexPath = [self.cardCollectionView indexPathForCell:cell];
